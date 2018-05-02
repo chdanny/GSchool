@@ -323,6 +323,13 @@ void loop() {
   }
 */
   client.loop();
+
+
+  client.publish("asd", "qqq111");
+  // 清空MQTT訊息內容
+  //msgStr = "";
+  
+  delay(10000);  
 }
 
 
@@ -330,7 +337,7 @@ void loop() {
 void InitWiFi()
 {
   // 初始化软串口，软串口连接ESP模块
-  soft.begin(115200);
+  soft.begin(9600);
   // 初始化ESP模块
   WiFi.init(&soft);
   // 检测WiFi模块在不在，宏定义：WL_NO_SHIELD = 255,WL_IDLE_STATUS = 0,
@@ -362,7 +369,7 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("[reconnect]Connecting to MQTT Server ...");
     // 尝试连接connect是个重载函数 (clientId, username, password)
-    if ( client.connect("liefyuan", "TEST", "TEST") ) {
+    if ( client.connect("danny", "TEST", "TEST") ) {
       Serial.println( "[DONE]" );
     } else {
       Serial.print( "[FAILED] [ mqtt connect error code = " );
